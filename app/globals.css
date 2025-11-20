@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-muted: var(--muted);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  /* Light Mode - High Contrast Nordic */
+  --background: #E7F6F2;
+  /* Minty White */
+  --foreground: #2C3333;
+  /* Deep Charcoal - Excellent contrast */
+  --primary: #2C3333;
+  /* Deep Charcoal - For primary text/links */
+  --secondary: #395B64;
+  /* Muted Teal - Readable on light bg */
+  --accent: #A5C9CA;
+  /* Light Teal - For backgrounds/borders only */
+  --muted: #395B64;
+  /* Muted Teal - Readable */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(44, 51, 51, 0.15);
+}
+
+.dark {
+  /* Dark Mode - High Contrast Nordic */
+  --background: #2C3333;
+  /* Deep Charcoal */
+  --foreground: #E7F6F2;
+  /* Minty White - Excellent contrast */
+  --primary: #A5C9CA;
+  /* Light Teal - Readable on dark bg */
+  --secondary: #E7F6F2;
+  /* Minty White - Readable */
+  --accent: #395B64;
+  /* Muted Teal - For backgrounds/borders only */
+  --muted: #A5C9CA;
+  /* Light Teal - Readable */
+  --glass-bg: rgba(0, 0, 0, 0.2);
+  --glass-border: rgba(165, 201, 202, 0.15);
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Refined Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Nordic Gradient Text - Adjusted for contrast */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(135deg, var(--primary), var(--secondary));
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Enhanced Glass Panel */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
