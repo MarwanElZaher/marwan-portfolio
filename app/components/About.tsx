@@ -9,15 +9,15 @@ export default function About() {
     const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
 
     return (
-        <section id="about" className="py-20 relative">
-            <div ref={ref} className={`container mx-auto px-6 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <section id="about" className="py-12 sm:py-20 relative">
+            <div ref={ref} className={`container mx-auto px-4 sm:px-6 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-center">
                         About <span className="text-gradient">Me</span>
                     </h2>
 
-                    <div className="glass-panel p-8 md:p-12 rounded-3xl">
-                        <p className="text-lg md:text-xl text-muted leading-relaxed mb-8">
+                    <div className="glass-panel p-6 sm:p-8 md:p-12 rounded-3xl">
+                        <p className="text-base sm:text-lg md:text-xl text-muted leading-relaxed mb-6 sm:mb-8">
                             {description}
                         </p>
 

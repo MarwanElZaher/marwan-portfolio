@@ -1,4 +1,5 @@
 import { portfolioData } from '@/app/content/portfolio-data';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -16,9 +17,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
+  // Map project slugs to their logo files
+  const logoMap: Record<string, string> = {
+    'heal-hub': '/hospital-logo.svg',
+    'ai-gis-plugin': '/Pentab.svg',
+  };
+
+  const projectLogo = logoMap[project.slug];
+
   return (
     <main className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <Link
           href="/#projects"
           className="inline-flex items-center text-muted hover:text-primary transition-colors mb-8 group"
@@ -34,12 +43,35 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-8 text-foreground">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-8 text-foreground">
             {project.title}
           </h1>
 
-          <div className="glass-panel p-8 md:p-12 rounded-3xl mb-12">
-            <p className="text-xl text-muted leading-relaxed mb-8">
+          {/* Client Logo and Info */}
+          {(projectLogo || (project as any).client) && (
+            <div className="glass-panel p-6 rounded-2xl mb-8 flex flex-col sm:flex-row items-center gap-6">
+              {projectLogo && (
+                <div className="flex-shrink-0">
+                  <Image
+                    src={projectLogo}
+                    alt={`${project.title} logo`}
+                    width={120}
+                    height={120}
+                    className="rounded-lg"
+                  />
+                </div>
+              )}
+              {(project as any).client && (
+                <div className="text-center sm:text-left">
+                  <p className="text-sm text-muted mb-1">Client</p>
+                  <p className="text-lg font-semibold text-foreground">{(project as any).client}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="glass-panel p-6 sm:p-8 md:p-12 rounded-3xl mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-muted leading-relaxed mb-8">
               {project.content}
             </p>
 

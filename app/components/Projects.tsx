@@ -9,13 +9,13 @@ export default function Projects() {
     const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
 
     return (
-        <section id="projects" className="py-20 relative">
-            <div ref={ref} className={`container mx-auto px-6 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">
+        <section id="projects" className="py-12 sm:py-20 relative">
+            <div ref={ref} className={`container mx-auto px-4 sm:px-6 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-16 text-center">
                     Featured <span className="text-gradient">Projects</span>
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {portfolioData.projects.map((project) => (
                         <Link key={project.id} href={`/projects/${project.slug}`} className="block group">
                             <div className="h-full relative rounded-3xl overflow-hidden bg-glass-bg border border-glass-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-lg hover:shadow-xl">

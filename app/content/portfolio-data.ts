@@ -3,7 +3,7 @@ export const portfolioData = {
         name: "Marwan ElZaher",
         title: "Frontend Developer & AI Engineer",
         tagline: "Building the future with AI, Automation, and Creative Web Solutions.",
-        description: "I am a researcher and developer specializing in creating innovative solutions. With a background in R&D, I bridge the gap between complex AI systems and intuitive user interfaces. From GIS plugins to autonomous agents, I build software that matters.",
+        description: "I am a researcher and developer specializing in creating innovative solutions. Currently working at Penta-B, I bridge the gap between complex AI systems and intuitive user interfaces. From GIS plugins to autonomous agents, I build software that matters. I've successfully delivered healthcare systems like Heal-Hub to clients including Dr. Nabil Abdelmaksoud's addiction therapy hospital.",
         email: "marawanmzaher@gmail.com",
         location: "Cairo, Egypt",
         socials: {
@@ -31,8 +31,12 @@ export const portfolioData = {
             slug: "heal-hub",
             category: "Healthcare",
             description: "A comprehensive application for addiction therapy management. Designed to streamline operations for multi-disciplinary teams including nurses, receptionists, doctors, psychiatrists, and pharmacists.",
+            content: "Heal-Hub is a full-featured healthcare management system built for Dr. Nabil Abdelmaksoud's addiction therapy hospital. The application manages the entire patient journey from admission to discharge, with specialized modules for each role: nurses track vitals and medications, receptionists handle appointments and billing, doctors manage treatment plans, psychiatrists conduct assessments, and pharmacists oversee prescriptions. The system was successfully deployed and sold to Dr. Abdelmaksoud's hospital, where it continues to improve operational efficiency and patient care quality.",
             technologies: ["React", "Node.js", "Database Management", "Role-Based Access Control"],
-            features: ["Multi-role dashboard", "Patient management", "Prescription tracking", "Appointment scheduling"]
+            features: ["Multi-role dashboard", "Patient management", "Prescription tracking", "Appointment scheduling"],
+            link: "#",
+            github: "#",
+            client: "Dr. Nabil Abdelmaksoud - Addiction Therapy Hospital"
         },
         {
             id: "pos-system",
