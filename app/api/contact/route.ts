@@ -1,37 +1,63 @@
-// src/app/api/contact/route.ts
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-// This is a Serverless Function handled by Next.js
-export async function POST(request: Request) {
-  try {
-    const { name, email, message } = await request.json();
 
-    // Basic validation
+export async function POST(req: Request) {
+  try {
+    const { name, email, message } = await req.json();
+
     if (!name || !email || !message) {
-      return NextResponse.json({ message: 'All fields are required.' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('Missing EMAIL_USER or EMAIL_PASS environment variables');
+      return NextResponse.json(
+        { error: 'Server configuration error: Missing email credentials' },
+        { status: 500 }
+      );
     }
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail', // or 'smtp' for custom server
+      service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     });
-    await transporter.sendMail({
+
+    const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.RECIPIENT_EMAIL, // Your email address
-      subject: `New Contact Form Submission from ${name}`,
-      html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
-    });
+      to: process.env.EMAIL_USER, // Send to yourself
+      replyTo: email,
+      subject: `New Portfolio Contact from ${name}`,
+      text: `
+        Name: ${name}
+        Email: ${email}
+        
+        Message:
+        ${message}
+      `,
+      html: `
+        <h3>New Portfolio Contact</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <br/>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `,
+    };
 
+    await transporter.sendMail(mailOptions);
 
-    console.log('Received contact form submission:', { name, email, message });
-    // In a real application, you'd send an email here or save to a database.
-
-    return NextResponse.json({ message: 'Message sent successfully!' }, { status: 200 });
-  } catch (error) {
-    console.error('API Error:', error);
-    return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    console.error('Error sending email:', error);
+    return NextResponse.json(
+      { error: error.message || 'Failed to send email' },
+      { status: 500 }
+    );
   }
 }

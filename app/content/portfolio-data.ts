@@ -3,7 +3,10 @@ export const portfolioData = {
         name: "Marwan ElZaher",
         title: "Frontend Developer & AI Engineer",
         tagline: "Building the future with AI, Automation, and Creative Web Solutions.",
-        description: "I am a researcher and developer specializing in creating innovative solutions. Currently working at Penta-B, I bridge the gap between complex AI systems and intuitive user interfaces. From GIS plugins to autonomous agents, I build software that matters. I've successfully delivered healthcare systems like Heal-Hub to clients including Dr. Nabil Abdelmaksoud's addiction therapy hospital.",
+        description: "My journey into AI began at the start of this year at Penta-B, where I innovated a Geo AI Assistant capable of dynamically invoking and creating functions with guardrails, querying maps, and executing intelligent actions. That breakthrough ignited my passion for integrating AI into every facet of my work—delivering innovative solutions, minimizing human error, and forecasting outcomes with precision.\n\nBefore Penta-B, during my military service, I joined the ALX African Leadership Experience Software Engineer track and contributed to Egypt's sustainable agriculture sector. I built the very first system to generate daily sales and purchase reports while tracking inventory in real-time.\n\nI graduated with honors from Misr University for Science and Technology (MUST), earning a degree in Business Information Systems (BIS) with a major in Information Systems and a minor in Accounting. I ranked first in my college, a testament to my dedication to excellence.\n\nToday, I specialize in agentic AI orchestration, automation with n8n, and eliminating boilerplate work so teams can focus on solving real problems. I'm driven by clean code, exceptional user experience, solving real-world challenges, and speed.",
+        education: "B.Sc. in Business Information Systems (BIS) - Misr University for Science and Technology (MUST)\nMajor: Information Systems | Minor: Accounting\nGraduated with Honors - 1st in College",
+        interests: "When I'm not coding, you'll find me crafting the perfect cup of coffee and practicing latte art, diving into the latest tech trends, or getting my hands dirty fixing my car. I'm a music enthusiast, a technology geek, and most importantly, a proud fiancé looking forward to tying the knot soon!",
+        values: ["Clean Code", "User Experience", "Real-World Problem Solving", "Speed & Efficiency"],
         email: "marawanmzaher@gmail.com",
         location: "Cairo, Egypt",
         socials: {
@@ -34,7 +37,7 @@ export const portfolioData = {
             content: "Heal-Hub is a full-featured healthcare management system built for Dr. Nabil Abdelmaksoud's addiction therapy hospital. The application manages the entire patient journey from admission to discharge, with specialized modules for each role: nurses track vitals and medications, receptionists handle appointments and billing, doctors manage treatment plans, psychiatrists conduct assessments, and pharmacists oversee prescriptions. The system was successfully deployed and sold to Dr. Abdelmaksoud's hospital, where it continues to improve operational efficiency and patient care quality.",
             technologies: ["React", "Node.js", "Database Management", "Role-Based Access Control"],
             features: ["Multi-role dashboard", "Patient management", "Prescription tracking", "Appointment scheduling"],
-            link: "#",
+            link: "https://heal-1cayrybf0-marwan-el-zahers-projects.vercel.app/",
             github: "#",
             client: "Dr. Nabil Abdelmaksoud - Addiction Therapy Hospital"
         },
@@ -44,10 +47,21 @@ export const portfolioData = {
             slug: "pos-system",
             category: "Fintech",
             description: "Integrated Point of Sale system with thermal printing, inventory management, and sales reporting.",
-            content: "This Point of Sale (POS) system is engineered for the Food & Beverage industry. It integrates seamlessly with thermal printers for receipt generation and kitchen orders. The system handles real-time inventory tracking, detailed sales reporting, and automated end-of-day closing procedures, ensuring operational efficiency.",
+            content: "This Point of Sale (POS) system is engineered for the Food & Beverage industry. It integrates seamlessly with thermal printers for receipt generation and kitchen orders.\n\nThe system handles real-time inventory tracking, detailed sales reporting, and automated end-of-day closing procedures.\n\nIt has been successfully deployed and is currently powering operations at Wanted Cafe, Didi's Kitchen, and Almatbakh.",
             technologies: ["React", "Electron", "Node.js", "MongoDB", "Socket.io"],
             link: "#",
-            github: "#"
+            github: "#",
+            client: "Wanted Cafe, Didi's Kitchen, Almatbakh",
+            clientLogos: ["/wanted-logo.jpg", "/didiskitchen.svg", "/almatbakh.png"],
+            features: ["Thermal Printer Integration", "Real-time Inventory", "Sales Reporting", "Kitchen Display System"],
+            gallery: [
+                "/5 HomeScreen.png",
+                "/6 Choosing Item Screen.png",
+                "/7 invoice and choosing payment method.png",
+                "/4 shift started.png",
+                "/8 searching method.png",
+                "/9 accessing history within opened shift.png"
+            ]
         },
         {
             id: 3,
@@ -56,9 +70,11 @@ export const portfolioData = {
             category: "AI & GIS",
             description: "LangChain-based assistant for map queries, highlighting, and drawing with voice commands.",
             content: "An innovative AI-powered plugin for GIS applications. Leveraging LangChain, it allows users to interact with maps using natural language. Features include voice-controlled map navigation (TTS/STT), intelligent querying of geospatial data, and automated highlighting and drawing on map layers.",
-            technologies: ["Python", "LangChain", "OpenAI", "GIS API", "React"],
+            technologies: ["JavaScript", "TypeScript", "LangChain", "OpenAI", "GIS API", "React"],
             link: "#",
-            github: "#"
+            github: "#",
+            video: "https://www.youtube.com/embed/UPwFxA4kNcg",
+            // image: "/camilia.png"
         },
         {
             id: 4,

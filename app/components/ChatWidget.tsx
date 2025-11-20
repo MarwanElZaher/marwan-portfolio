@@ -33,6 +33,20 @@ export default function ChatWidget() {
         scrollToBottom();
     }, [messages, isOpen]);
 
+    useEffect(() => {
+        const handleOpenChat = (e: CustomEvent) => {
+            setIsOpen(true);
+            if (e.detail?.message) {
+                const userMessage = { role: 'user' as const, content: e.detail.message };
+                setMessages(prev => [...prev, userMessage]);
+                processMessage(e.detail.message);
+            }
+        };
+
+        window.addEventListener('open-chat' as any, handleOpenChat as any);
+        return () => window.removeEventListener('open-chat' as any, handleOpenChat as any);
+    }, []);
+
     const handleQuickAction = (action: string) => {
         const userMessage = { role: 'user' as const, content: action };
         setMessages(prev => [...prev, userMessage]);
