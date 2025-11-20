@@ -7,6 +7,8 @@ type Message = {
     content: string;
 };
 
+import { useRouter, usePathname } from 'next/navigation';
+
 export default function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
@@ -15,6 +17,8 @@ export default function ChatWidget() {
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const pathname = usePathname();
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -44,7 +48,27 @@ export default function ChatWidget() {
 
             if (data.error) throw new Error(data.error);
 
-            setMessages(prev => [...prev, { role: 'assistant', content: data.content }]);
+            let content = data.content;
+            const navMatch = content.match(/\[\[NAVIGATE: (.*?)\]\]/);
+
+            if (navMatch) {
+                const target = navMatch[1];
+                content = content.replace(navMatch[0], '').trim();
+
+                // Handle navigation
+                if (target.startsWith('#')) {
+                    if (pathname !== '/') {
+                        router.push('/' + target);
+                    } else {
+                        const element = document.querySelector(target);
+                        element?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    router.push(target);
+                }
+            }
+
+            setMessages(prev => [...prev, { role: 'assistant', content: content }]);
         } catch (error) {
             console.error('Chat error:', error);
             setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an error. Please try again later.' }]);

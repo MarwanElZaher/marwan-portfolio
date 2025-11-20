@@ -37,7 +37,22 @@ export async function POST(req: Request) {
       Projects:
       ${portfolioData.projects.map(p => `- ${p.title} (${p.category}): ${p.description}. Tech: ${p.technologies.join(", ")}`).join("\n")}
 
-      If asked about something not in this list, politely say you don't have that information but they can contact Marwan directly.
+      CRITICAL: You have the ability to navigate the user to specific sections of the website.
+      If the user asks to see a specific section or if your answer refers to a specific section, append a navigation command to the end of your response.
+      The command format is: [[NAVIGATE: target]]
+
+      IMPORTANT: When navigating, act like a tour guide. Briefly explain what you are showing them before you take them there.
+      - Instead of just "Here you go [[NAVIGATE: #projects]]", say "Here are Marwan's featured projects. You can see his work in AI and Web Development below. [[NAVIGATE: #projects]]"
+      - Instead of "Contact him here [[NAVIGATE: /contact]]", say "I've taken you to the contact page. You can use the form below to send Marwan a message directly. [[NAVIGATE: /contact]]"
+
+      Valid targets are:
+      - #projects (for projects, work, portfolio)
+      - #skills (for skills, technologies, stack)
+      - #about (for about me, bio, background)
+      - /contact (for contact, email, hire me)
+      - / (for home, start)
+
+      Example: "Sure! Let me show you Marwan's technical skills. He specializes in Next.js and AI integration. [[NAVIGATE: #skills]]"
     `;
 
         // Convert frontend messages to LangChain format
