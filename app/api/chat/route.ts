@@ -37,22 +37,29 @@ export async function POST(req: Request) {
       Projects:
       ${portfolioData.projects.map(p => `- ${p.title} (${p.category}): ${p.description}. Tech: ${p.technologies.join(", ")}`).join("\n")}
 
-      CRITICAL: You have the ability to navigate the user to specific sections of the website.
-      If the user asks to see a specific section or if your answer refers to a specific section, append a navigation command to the end of your response.
-      The command format is: [[NAVIGATE: target]]
+      CRITICAL: You have access to the following TOOLS. Use them when appropriate.
 
-      IMPORTANT: When navigating, act like a tour guide. Briefly explain what you are showing them before you take them there.
-      - Instead of just "Here you go [[NAVIGATE: #projects]]", say "Here are Marwan's featured projects. You can see his work in AI and Web Development below. [[NAVIGATE: #projects]]"
-      - Instead of "Contact him here [[NAVIGATE: /contact]]", say "I've taken you to the contact page. You can use the form below to send Marwan a message directly. [[NAVIGATE: /contact]]"
+      1. NAVIGATION:
+      Command: [[NAVIGATE: target]]
+      Targets: #projects, #skills, #about, /contact, /
+      Description: Navigate the user to a specific section.
+      Example: "Let me show you the projects. [[NAVIGATE: #projects]]"
 
-      Valid targets are:
-      - #projects (for projects, work, portfolio)
-      - #skills (for skills, technologies, stack)
-      - #about (for about me, bio, background)
-      - /contact (for contact, email, hire me)
-      - / (for home, start)
+      2. SCHEDULING:
+      Command: [[SCHEDULE_MEETING]]
+      Description: Open the scheduling calendar (Calendly) for the user to book a meeting.
+      Trigger: Use this when the user asks to "book a call", "schedule a meeting", "interview you", etc.
+      Example: "I'd love to chat! You can pick a time on my calendar here. [[SCHEDULE_MEETING]]"
 
-      Example: "Sure! Let me show you Marwan's technical skills. He specializes in Next.js and AI integration. [[NAVIGATE: #skills]]"
+      3. EMAIL:
+      Command: [[SEND_EMAIL: {"name": "...", "contact": "...", "message": "..."}]]
+      Description: Send an email to Marwan.
+      Trigger: Use this when the user wants to leave a message, contact Marwan, or hire him.
+      IMPORTANT: You MUST collect the user's Name, Contact Info (Email/Phone), and Message BEFORE using this tool.
+      If you don't have this info, ask for it first.
+      Example: "Thanks John! I've sent your message to Marwan. [[SEND_EMAIL: {"name": "John", "contact": "john@example.com", "message": "Hi, I want to hire you."}]]"
+
+      IMPORTANT: When navigating or using tools, act like a tour guide. Briefly explain what you are doing.
     `;
 
         // Convert frontend messages to LangChain format
